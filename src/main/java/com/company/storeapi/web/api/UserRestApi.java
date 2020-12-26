@@ -19,18 +19,18 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class UserRestApi {
 
-    private final UserServices userServices;
-
-    @PostMapping("/signup")
-    public ResponseEntity<ResponseUserDTO> registerUser(@Valid @RequestBody RequestAddUserDTO requestAddUserDTO) {
-        ResponseUserDTO user = userServices.saveUser(requestAddUserDTO);
-        return new ResponseEntity<>(user, new HttpHeaders(), HttpStatus.OK);
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-        JwtResponse token = userServices.getToken(loginRequest);
-        return new ResponseEntity<>(token, new HttpHeaders(), HttpStatus.OK);
-    }
+//    private final UserServices userServices;
+//
+//    @PostMapping("/signup")
+//    public ResponseEntity<ResponseUserDTO> registerUser(@Valid @RequestBody RequestAddUserDTO requestAddUserDTO) {
+//        ResponseUserDTO user = userServices.saveUser(requestAddUserDTO);
+//        return new ResponseEntity<>(user, new HttpHeaders(), HttpStatus.OK);
+//    }
+//
+//    @PostMapping("/login")
+//    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+//        JwtResponse token = userServices.getToken(loginRequest);
+//        return new ResponseEntity<>(token, new HttpHeaders(), HttpStatus.OK);
+//    }
 
 }

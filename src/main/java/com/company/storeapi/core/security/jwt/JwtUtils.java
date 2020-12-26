@@ -5,13 +5,13 @@ import com.company.storeapi.core.exceptions.enums.LogRefServices;
 import com.company.storeapi.core.security.service.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 @Component
 public class JwtUtils {
-
+/*
     @Value("${inventory.app.jwtSecret}")
     private String jwtSecret;
 
@@ -48,5 +48,5 @@ public class JwtUtils {
         } catch (IllegalArgumentException e) {
             throw new ServiceException(LogRefServices.ERROR_JWT_EMPTY,"Token vacio");
         }
-    }
+    }*/
 }

@@ -8,7 +8,7 @@ import com.company.storeapi.model.payload.request.user.RequestAddUserDTO;
 import com.company.storeapi.model.payload.response.user.ResponseUserDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.NullValuePropertyMappingStrategy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+// import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -30,16 +30,16 @@ public abstract class UserMapper {
         User user = new User();
         user.setUsername(requestAddUserDTO.getUsername());
 
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12); // Strength set as 12
-        String encodedPassword = encoder.encode(requestAddUserDTO.getPassword());
-        user.setPassword(encodedPassword);
-        Matcher mather = pattern.matcher(requestAddUserDTO.getEmail());
+//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12); // Strength set as 12
+//        String encodedPassword = encoder.encode(requestAddUserDTO.getPassword());
+//        user.setPassword(encodedPassword);
+//        Matcher mather = pattern.matcher(requestAddUserDTO.getEmail());
 
-        if (mather.find()) {
-            user.setEmail(requestAddUserDTO.getEmail());
-        } else {
-            throw new DataCorruptedPersistenceException(LogRefServices.ERROR_DATA_CORRUPT,"Email no valido");
-        }
+//        if (mather.find()) {
+//            user.setEmail(requestAddUserDTO.getEmail());
+//        } else {
+//            throw new DataCorruptedPersistenceException(LogRefServices.ERROR_DATA_CORRUPT,"Email no valido");
+//        }
 
 
         Set<String> strRoles = requestAddUserDTO.getRole();

@@ -11,17 +11,17 @@ import java.util.List;
 
 public interface UserServices {
 
-    List<ResponseUserDTO> getAllUser();
-
-    ResponseUserDTO saveUser(RequestAddUserDTO requestAddUserDTO);
-
-    JwtResponse getToken (LoginRequest loginRequest);
-
-    void deleteUser(String id);
-
-    ResponseUserDTO updateUser(String id, RequestAddUserDTO requestUpdateCustomerDTO);
-
-    ResponseUserDTO validateAndGetUserById(String id);
-
-    ResponseUserDTO updateStatus(String id, Status status);
+//    List<ResponseUserDTO> getAllUser();
+//
+//    ResponseUserDTO saveUser(RequestAddUserDTO requestAddUserDTO);
+//
+//    JwtResponse getToken (LoginRequest loginRequest);
+//
+//    void deleteUser(String id);
+//
+//    ResponseUserDTO updateUser(String id, RequestAddUserDTO requestUpdateCustomerDTO);
+//
+//    ResponseUserDTO validateAndGetUserById(String id);
+//
+//    ResponseUserDTO updateStatus(String id, Status status);
 }
