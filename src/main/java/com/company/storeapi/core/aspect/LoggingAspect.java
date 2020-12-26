@@ -19,41 +19,25 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Aspect
 @Component
-public class LoggingAspect extends BaseAspect {
-
+public class LoggingAspect {
+//        extends BaseAspect {
+/*
     @Value("${spring.profiles.active}")
     private String profile;
 
-    /**
-     * Instantiates a new Logging aspect.
-     *
-     * @param mapper the mapper
-     */
     public LoggingAspect(ObjectMapper mapper) {
         super(mapper);
     }
 
-    /**
-     * Bean pointcut.
-     */
+
     @Pointcut("within(@org.springframework.stereotype.Component *) || within(@org.springframework.stereotype.Service *) || within(@org.springframework.stereotype.Repository * ) || within(@org.springframework.web.bind.annotation.RestController *)")
     public void beanPointcut() {
     }
 
-    /**
-     * Application package pointcut.
-     */
     @Pointcut("within(com.company.storeapi.repositories..*)|| within(com.company.storeapi.model..*)|| within(com.company.storeapi.services..*) || within(com.company.storeapi.web..*)")
     public void applicationPackagePointcut() {
     }
 
-    /**
-     * Log around object.
-     *
-     * @param proceedingJoinPoint the proceeding join point
-     * @return the object
-     * @throws Throwable the throwable
-     */
     @Around("applicationPackagePointcut() && beanPointcut()")
     public Object logAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         Marker marker = MarkerFactory.getMarker(proceedingJoinPoint.getSignature().getName());
@@ -76,6 +60,7 @@ public class LoggingAspect extends BaseAspect {
         }
 
     }
+    */
 
 
 }
