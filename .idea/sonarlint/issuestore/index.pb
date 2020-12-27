@@ -25,3 +25,9 @@ Msrc/main/java/com/company/storeapi/core/security/service/UserDetailsImpl.java,
 Tsrc/main/java/com/company/storeapi/core/security/service/UserDetailsServiceImpl.java,c\8\c8f1c5f9607061683526129a1dc6baed746b6548
 w
 Gsrc/main/java/com/company/storeapi/core/security/WebSecurityConfig.java,c\6\c611b9ea295ad16b9a2ef9d7cdbe17439bac5ae0
+q
+Asrc/main/java/com/company/storeapi/core/aspect/LoggingAspect.java,f\e\feae7a3cec9122eb6d1e0269251e7150144904de
+|
+Lsrc/main/java/com/company/storeapi/services/order/impl/OrderServiceImpl.java,b\4\b4bbed18643398801515015793efa9b33eefd089
+‚
+Rsrc/main/java/com/company/storeapi/services/category/impl/CategoryServiceImpl.java,f\2\f20627581a29e18e19997e6f9dd71d78e0ced1a7
