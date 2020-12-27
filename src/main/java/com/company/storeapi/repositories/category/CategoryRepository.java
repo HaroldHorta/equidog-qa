@@ -5,7 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface CategoryRepository extends MongoRepository<Category,String> {
 
-
     Category findCategoryById(String id);
 
     Category findCategoriesByDescription(String description);
