@@ -31,3 +31,9 @@ Asrc/main/java/com/company/storeapi/core/aspect/LoggingAspect.java,f\e\feae7a3c
 Lsrc/main/java/com/company/storeapi/services/order/impl/OrderServiceImpl.java,b\4\b4bbed18643398801515015793efa9b33eefd089
 Ç
 Rsrc/main/java/com/company/storeapi/services/category/impl/CategoryServiceImpl.java,f\2\f20627581a29e18e19997e6f9dd71d78e0ced1a7
+ç
+]src/main/java/com/company/storeapi/repositories/category/facade/CategoryRepositoryFacade.java,e\3\e3c46864984b6e72013fed26a4dcc09384218176
+ñ
+fsrc/main/java/com/company/storeapi/repositories/category/facade/impl/CategoryRepositoryFacadeImpl.java,4\b\4ba5f9f1bca9f7c56694fe0cb89cd4422604cfe3
+Ä
+Psrc/main/java/com/company/storeapi/repositories/category/CategoryRepository.java,0\2\02351b01f3db6d89af951febcbde12f9f3ad6698
