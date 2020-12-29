@@ -51,6 +51,7 @@ com\company\storeapi\services\user\impl\UserServicesImpl.class
 com\company\storeapi\model\payload\response\finance\ResponseCashBase.class
 com\company\storeapi\services\product\FilesStorageService.class
 com\company\storeapi\model\enums\IVA.class
+com\company\storeapi\core\util\StandNameUtil.class
 com\company\storeapi\services\finances\expenses\ExpensesService.class
 com\company\storeapi\model\entity\Ticket.class
 com\company\storeapi\services\ticket\impl\TicketServicesImpl.class

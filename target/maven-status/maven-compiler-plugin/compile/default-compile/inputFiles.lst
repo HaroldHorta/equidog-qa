@@ -110,6 +110,7 @@ D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\repositories\custome
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\model\payload\response\finance\ResponseCashRegisterDTO.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\repositories\finances\cashBase\CashBaseRepository.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\core\aspect\base\BaseAspect.java
+D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\core\util\StandNameUtil.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\web\api\OrderRestApi.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\repositories\finances\cashRegisterDaily\facade\impl\CashRegisterDailyRepositoryFacadeImpl.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\model\payload\response\user\JwtResponse.java
