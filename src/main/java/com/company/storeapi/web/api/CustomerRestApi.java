@@ -5,7 +5,12 @@ import com.company.storeapi.model.enums.Status;
 import com.company.storeapi.model.payload.request.customer.RequestAddCustomerDTO;
 import com.company.storeapi.model.payload.request.customer.RequestUpdateCustomerDTO;
 import com.company.storeapi.model.payload.response.customer.ResponseCustomerDTO;
+import com.company.storeapi.model.payload.response.customer.ResponseListCustomerPaginationDto;
 import com.company.storeapi.services.customer.CustomerService;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,6 +26,9 @@ import java.util.List;
 @RequestMapping(value = "/api/customer")
 @CrossOrigin({"*"})
 public class CustomerRestApi {
+
+    @Value("${spring.size.pagination}")
+    private int size;
 
     private final CustomerService customerService;
 
@@ -40,10 +48,21 @@ public class CustomerRestApi {
      * @throws ServiceException the service exception
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ResponseCustomerDTO> getAllProduct() {
+    public List<ResponseCustomerDTO> getAllCustomer() {
         return customerService.getAllCustomers();
     }
 
+    @GetMapping(value = "/customerFilter", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseListCustomerPaginationDto getAllCustomerFilter() {
+        return customerService.getCustomerPageable();
+    }
+
+
+    @GetMapping(value = "/page", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseListCustomerPaginationDto getAllCustomerPage(@Param(value = "page") int page) {
+        Pageable requestedPage = PageRequest.of(page, size);
+        return customerService.getCustomerPageable(requestedPage);
+    }
 
     /**
      * Gets product by id.
@@ -86,9 +105,9 @@ public class CustomerRestApi {
      * @return the response entity
      * @throws ServiceException the service exception
      */
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ResponseCustomerDTO> update (@RequestBody RequestUpdateCustomerDTO requestUpdateCustomerDTO) {
-        ResponseCustomerDTO update = customerService.updateCustomer(requestUpdateCustomerDTO.getId(), requestUpdateCustomerDTO);
+    @PutMapping(value = "update/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ResponseCustomerDTO> update (@PathVariable String id , @RequestBody RequestUpdateCustomerDTO requestUpdateCustomerDTO) {
+        ResponseCustomerDTO update = customerService.updateCustomer(id, requestUpdateCustomerDTO);
         return new ResponseEntity<>(update, new HttpHeaders(), HttpStatus.OK);
     }
 
@@ -96,5 +115,10 @@ public class CustomerRestApi {
     public  ResponseEntity<ResponseCustomerDTO> updateStatus(@PathVariable String id, @PathVariable Status status){
         ResponseCustomerDTO update= customerService.updateStatus(id,status);
         return new ResponseEntity<>(update, new HttpHeaders(), HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = {"/{id}"})
+    public void delete (@PathVariable String id){
+        customerService.deleteCustomer(id);
     }
 }

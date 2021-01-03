@@ -15,11 +15,11 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 )
 public abstract class CategoryMapper {
 
-    public Category toCategory(RequestAddCategoryDTO requestAddCategoryDTO){
-        Category category = new Category();
-        category.setDescription(StandNameUtil.toCapitalLetters(requestAddCategoryDTO.getDescription().trim()));
-        return category;
-    }
+   public Category toCategory(RequestAddCategoryDTO requestAddCategoryDTO){
+       Category category = new Category();
+       category.setDescription(StandNameUtil.toCapitalLetters(requestAddCategoryDTO.getDescription().trim()));
+       return category;
+   }
 
     public abstract Category toCategory(ResponseCategoryDTO responseCategoryDTO);
 

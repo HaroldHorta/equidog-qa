@@ -1,5 +1,7 @@
 package com.company.storeapi.services.customer.impl;
 
+import com.company.storeapi.core.exceptions.enums.LogRefServices;
+import com.company.storeapi.core.exceptions.persistence.DataNotFoundPersistenceException;
 import com.company.storeapi.core.mapper.CustomerMapper;
 import com.company.storeapi.model.entity.CountingGeneral;
 import com.company.storeapi.model.enums.Status;
@@ -7,10 +9,12 @@ import com.company.storeapi.model.payload.request.customer.RequestAddCustomerDTO
 import com.company.storeapi.model.payload.request.customer.RequestUpdateCustomerDTO;
 import com.company.storeapi.model.payload.response.customer.ResponseCustomerDTO;
 import com.company.storeapi.model.entity.Customer;
+import com.company.storeapi.model.payload.response.customer.ResponseListCustomerPaginationDto;
 import com.company.storeapi.repositories.customer.facade.CustomerRepositoryFacade;
 import com.company.storeapi.services.countingGeneral.CountingGeneralService;
 import com.company.storeapi.services.customer.CustomerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -61,6 +65,10 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void deleteCustomer(String id) {
+        Boolean customer = customerRepositoryFacade.existsCustomerById(id);
+        if(!customer){
+            throw new DataNotFoundPersistenceException(LogRefServices.ERROR_DATA_CORRUPT, "El cliente no existe");
+        }
         customerRepositoryFacade.deleteCustomer(id);
     }
 
@@ -86,6 +94,27 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public ResponseCustomerDTO getCustomerByNroDocument(String nroDocument) {
         return customerMapper.toCustomerDto(customerRepositoryFacade.findByNroDocument(nroDocument.trim()));
+    }
+
+    @Override
+    public ResponseListCustomerPaginationDto getCustomerPageable() {
+        List<Customer> customers = customerRepositoryFacade.getAllCustomers();
+        return getResponseListCustomerPaginationDto(customers);
+    }
+
+    public ResponseListCustomerPaginationDto getResponseListCustomerPaginationDto(List<Customer> customers) {
+        List<ResponseCustomerDTO> responseCustomers = customers.stream().map(customerMapper::toCustomerDto).collect(Collectors.toList());
+
+        ResponseListCustomerPaginationDto responseListCustomerPaginationDto = new ResponseListCustomerPaginationDto();
+        responseListCustomerPaginationDto.setCustomers(responseCustomers);
+        responseListCustomerPaginationDto.setCount(customers.size());
+        return responseListCustomerPaginationDto;
+    }
+
+    @Override
+    public ResponseListCustomerPaginationDto getCustomerPageable(Pageable pageable) {
+        List<Customer> customers = customerRepositoryFacade.findAllPageable(Status.ACTIVO,pageable);
+        return getResponseListCustomerPaginationDto(customers);
     }
 
 

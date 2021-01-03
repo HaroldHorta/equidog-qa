@@ -16,7 +16,6 @@ D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\repositories\categor
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\model\payload\response\customer\ResponseCustomerDTO.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\repositories\finances\expenses\facade\ExpensesRepositoryFacade.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\services\finances\cashRegister\CashRegisterService.java
-D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\services\user\UserServices.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\core\exceptions\service\DataNotFoundServiceException.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\core\mapper\ProductMapper.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\model\enums\IVA.java
@@ -50,6 +49,7 @@ D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\web\api\CountingGene
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\services\countingGeneral\CountingGeneralService.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\core\exceptions\enums\LogRefServices.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\model\enums\OrderStatus.java
+D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\model\payload\response\category\ResponseListCategoryPaginationDto.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\model\enums\TypeMovement.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\web\api\InventoryRestApi.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\model\payload\request\user\RequestAddUserDTO.java
@@ -90,7 +90,6 @@ D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\repositories\order\O
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\core\exceptions\base\SecurityException.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\web\api\ExpensesRestApi.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\services\finances\cashBase\CashBaseService.java
-D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\web\api\UserRestApi.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\core\exceptions\persistence\DataCorruptedPersistenceException.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\repositories\product\facade\impl\ProductRepositoryFacadeImpl.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\services\order\OrderService.java
@@ -99,6 +98,7 @@ D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\repositories\countin
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\model\payload\request\product\RequestAddProductDTO.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\model\entity\Category.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\repositories\countingGeneral\CountingGeneralRepository.java
+D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\model\payload\response\customer\ResponseListCustomerPaginationDto.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\model\payload\response\product\ResponseOrderProductItemsDTO.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\core\mapper\CashRegisterMapper.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\core\mapper\CustomerMapper.java
@@ -131,8 +131,6 @@ D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\core\mapper\OrderMap
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\core\constants\DeployType.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\model\payload\request\user\FileInfo.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\model\entity\finance\CashBase.java
-D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\services\user\impl\UserServicesImpl.java
-D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\core\mapper\UserMapper.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\web\api\ProductRestApi.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\model\enums\PaymentType.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\model\payload\request\product\RequestUpdateProductDTO.java

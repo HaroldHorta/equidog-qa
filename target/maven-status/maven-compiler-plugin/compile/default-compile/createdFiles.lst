@@ -13,7 +13,6 @@ com\company\storeapi\model\enums\TypeDocument.class
 com\company\storeapi\model\enums\TicketStatus.class
 com\company\storeapi\repositories\countingGeneral\facade\impl\CountingGeneralRepositoryFacadeImpl.class
 com\company\storeapi\core\exceptions\service\DataNotFoundServiceException.class
-com\company\storeapi\core\mapper\UserMapperImpl.class
 com\company\storeapi\model\payload\request\finance\RequestAddExpensesDTO.class
 com\company\storeapi\web\api\CountingGeneralRestApi.class
 com\company\storeapi\repositories\category\facade\CategoryRepositoryFacade.class
@@ -47,7 +46,6 @@ com\company\storeapi\core\mapper\ProductMapperImpl.class
 com\company\storeapi\repositories\tickey\facade\impl\TicketRepositoryFacadeImpl.class
 com\company\storeapi\core\constants\MessageError.class
 com\company\storeapi\repositories\order\facade\OrderRepositoryFacade.class
-com\company\storeapi\services\user\impl\UserServicesImpl.class
 com\company\storeapi\model\payload\response\finance\ResponseCashBase.class
 com\company\storeapi\services\product\FilesStorageService.class
 com\company\storeapi\model\enums\IVA.class
@@ -100,7 +98,6 @@ com\company\storeapi\model\payload\request\user\LoginRequest.class
 com\company\storeapi\core\exceptions\security\DataTokenInvalid.class
 com\company\storeapi\services\product\ProductService.class
 com\company\storeapi\core\exceptions\enums\LogRefServices.class
-com\company\storeapi\core\mapper\UserMapper.class
 com\company\storeapi\web\api\FileUploadRestApi.class
 com\company\storeapi\services\finances\cashRegister\impl\CashRegisterServiceImpl.class
 com\company\storeapi\repositories\finances\assets\facade\impl\AssetRepositoryFacadeImpl.class
@@ -118,7 +115,6 @@ com\company\storeapi\core\mapper\TicketMapperImpl.class
 com\company\storeapi\model\payload\request\order\RequestUpdateOrderDTO.class
 com\company\storeapi\repositories\product\ProductRepository.class
 com\company\storeapi\web\api\OrderRestApi.class
-com\company\storeapi\web\api\UserRestApi.class
 com\company\storeapi\repositories\user\facade\UserRepositoryFacade.class
 com\company\storeapi\services\ticket\TicketServices.class
 com\company\storeapi\core\exceptions\persistence\DataCorruptedPersistenceException.class
@@ -132,14 +128,15 @@ com\company\storeapi\model\enums\Role.class
 com\company\storeapi\model\entity\Order.class
 com\company\storeapi\services\finances\cashBase\CashBaseService.class
 com\company\storeapi\core\exceptions\service\DataCorruptedServiceException.class
-com\company\storeapi\services\user\UserServices.class
 com\company\storeapi\model\entity\finance\CashBase.class
 com\company\storeapi\services\order\impl\OrderServiceImpl.class
+com\company\storeapi\model\payload\response\category\ResponseListCategoryPaginationDto.class
 com\company\storeapi\core\mapper\CustomerMapperImpl.class
 com\company\storeapi\model\payload\request\product\RequestOrderProductItemsDTO.class
 com\company\storeapi\model\payload\request\category\RequestAddCategoryDTO.class
 com\company\storeapi\services\order\OrderService.class
 com\company\storeapi\model\entity\finance\CashBase$CashBaseBuilder.class
+com\company\storeapi\model\payload\response\customer\ResponseListCustomerPaginationDto.class
 com\company\storeapi\model\payload\request\customer\RequestUpdateCustomerDTO.class
 com\company\storeapi\repositories\finances\cashBase\facade\CashBaseRepositoryFacade.class
 com\company\storeapi\repositories\product\facade\impl\ProductRepositoryFacadeImpl.class

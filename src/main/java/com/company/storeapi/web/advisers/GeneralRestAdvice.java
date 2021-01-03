@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
         OrderRestApi.class,
         ProductRestApi.class,
         TicketRestApi.class,
-        UserRestApi.class,
 
 
 })

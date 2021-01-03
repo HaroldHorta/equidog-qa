@@ -31,12 +31,12 @@ public abstract class CustomerMapper {
 
     public Customer toCustomer(RequestAddCustomerDTO requestAddCustomerDTO){
 
-        Boolean existDocument = customerRepositoryFacade.validateAndGetCustomerByNroDocument(requestAddCustomerDTO.getNroDocument().trim());
+        boolean existDocument = customerRepositoryFacade.validateAndGetCustomerByNroDocument(requestAddCustomerDTO.getNroDocument().trim());
         if(existDocument){
             throw new DataCorruptedPersistenceException(LogRefServices.ERROR_DATA_CORRUPT,"El numero de cedula ya existe");
         }
 
-        Boolean existEmail = customerRepositoryFacade.validateAndGetCustomerByEmail(requestAddCustomerDTO.getEmail().trim());
+        boolean existEmail = customerRepositoryFacade.validateAndGetCustomerByEmail(requestAddCustomerDTO.getEmail().trim());
 
         if(existEmail){
             throw new DataCorruptedPersistenceException(LogRefServices.ERROR_DATA_CORRUPT,"El correo ya existe");
@@ -46,15 +46,18 @@ public abstract class CustomerMapper {
             customer.setName(requestAddCustomerDTO.getName());
             customer.setTypeDocument(requestAddCustomerDTO.getTypeDocument());
             customer.setNroDocument(requestAddCustomerDTO.getNroDocument().trim());
-            Matcher mather = pattern.matcher(requestAddCustomerDTO.getEmail().trim());
-            if (mather.find()) {
-                customer.setEmail(requestAddCustomerDTO.getEmail().trim());
-            } else {
-                throw new DataCorruptedPersistenceException(LogRefServices.ERROR_DATA_CORRUPT,"Email no valido");
-            }
-            customer.setAddress(requestAddCustomerDTO.getAddress());
-            customer.setPhone(requestAddCustomerDTO.getPhone().trim());
-            customer.setStatus(Status.ACTIVE);
+            customer.setEmail("N/A");
+          if(!requestAddCustomerDTO.getEmail().isEmpty()){
+              Matcher mather = pattern.matcher(requestAddCustomerDTO.getEmail().trim());
+              if (mather.find()) {
+                  customer.setEmail(requestAddCustomerDTO.getEmail().trim());
+              } else {
+                  throw new DataCorruptedPersistenceException(LogRefServices.ERROR_DATA_CORRUPT,"Email no valido");
+              }
+          }
+            customer.setAddress(requestAddCustomerDTO.getAddress().isEmpty() ? "N/A" : requestAddCustomerDTO.getAddress().trim());
+            customer.setPhone(requestAddCustomerDTO.getPhone().isEmpty() ? "N/A" : requestAddCustomerDTO.getPhone().trim());
+            customer.setStatus(Status.ACTIVO);
             return customer;
         } else  {
             throw new DataCorruptedPersistenceException(LogRefServices.ERROR_DATA_CORRUPT,"Los campos nombre, tipo de documento y numero de documento son obligatorios");

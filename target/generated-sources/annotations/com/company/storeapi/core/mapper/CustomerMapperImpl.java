@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-12-28T20:47:47-0500",
+    date = "2021-01-02T19:32:49-0500",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 14.0.1 (Oracle Corporation)"
 )
 @Component
@@ -60,9 +60,6 @@ public class CustomerMapperImpl extends CustomerMapper {
             return;
         }
 
-        if ( updateCustomerDto.getId() != null ) {
-            customer.setId( updateCustomerDto.getId() );
-        }
         if ( updateCustomerDto.getName() != null ) {
             customer.setName( updateCustomerDto.getName() );
         }
