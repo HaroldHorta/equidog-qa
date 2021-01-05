@@ -14,7 +14,9 @@ import java.util.List;
 
 public interface ProductService {
 
-    List<ResponseProductDTO> getAllProduct ();
+    ResponseListProductPaginationDto getAllProductInventory();
+
+    ResponseListProductPaginationDto getAllProductInventory(Pageable pageable);
 
     ResponseListProductPaginationDto getAllProductsFilters ();
 

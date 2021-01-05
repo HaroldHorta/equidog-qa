@@ -1,0 +1,19 @@
+
+…	java:S116"pRename this field "quantity_of_orders_in_cancelled_state" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ºüï
+€	java:S116"kRename this field "quantity_of_orders_in_open_state" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡¥§Ş
+‚	java:S116"nRename this field "quantity_of_orders_in_pending_state" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬Ëz
+†	java:S116"lRename this field "quantity_of_orders_in_payed_state" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖÄ¦”şÿÿÿÿ
+t	java:S116"_Rename this field "quantity_of_customer" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªèÚ§
+x	java:S116"^Rename this field "quantity_of_product" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“ä¯ßıÿÿÿÿ
+_
+java:S1068"IRemove this unused "quantity_of_orders_in_cancelled_state" private field.(ºüï
+Z
+java:S1068"DRemove this unused "quantity_of_orders_in_open_state" private field.(‡¥§Ş
+\
+java:S1068"GRemove this unused "quantity_of_orders_in_pending_state" private field.(¬Ëz
+`
+java:S1068"ERemove this unused "quantity_of_orders_in_payed_state" private field.(ÖÄ¦”şÿÿÿÿ
+N
+java:S1068"8Remove this unused "quantity_of_customer" private field.(ªèÚ§
+R
+java:S1068"7Remove this unused "quantity_of_product" private field.(“ä¯ßıÿÿÿÿ
