@@ -39,7 +39,6 @@ com\company\storeapi\model\entity\finance\CashRegisterDaily.class
 com\company\storeapi\core\serialize\SerializationConfiguration.class
 com\company\storeapi\services\category\CategoryService.class
 com\company\storeapi\services\finances\cashBase\impl\CashBaseServiceImpl.class
-com\company\storeapi\repositories\user\facade\impl\UserRepositoryFacadeImpl.class
 com\company\storeapi\model\payload\response\finance\CreditCapital.class
 com\company\storeapi\core\aspect\base\BaseAspect.class
 com\company\storeapi\core\mapper\ProductMapperImpl.class
@@ -62,13 +61,9 @@ com\company\storeapi\core\mapper\ProductMapper.class
 com\company\storeapi\core\constants\DeployType.class
 com\company\storeapi\core\exceptions\base\ServiceException.class
 com\company\storeapi\model\payload\request\category\RequestUpdateCategoryDTO.class
-com\company\storeapi\repositories\user\UserRepository.class
 com\company\storeapi\repositories\countingGeneral\facade\CountingGeneralRepositoryFacade.class
-com\company\storeapi\model\payload\request\user\FileInfo.class
 com\company\storeapi\core\security\jwt\AuthTokenFilter.class
 com\company\storeapi\core\mapper\CashRegisterMapperImpl.class
-com\company\storeapi\model\entity\User.class
-com\company\storeapi\model\payload\response\user\ResponseUserDTO.class
 com\company\storeapi\services\category\impl\CategoryServiceImpl.class
 com\company\storeapi\model\entity\finance\Expenses.class
 com\company\storeapi\core\security\jwt\AuthEntryPointJwt.class
@@ -86,7 +81,6 @@ com\company\storeapi\repositories\customer\facade\CustomerRepositoryFacade.class
 com\company\storeapi\services\product\impl\ProductServiceImpl.class
 com\company\storeapi\StoreApiApplication.class
 com\company\storeapi\core\exceptions\persistence\PortalPersistenceException.class
-com\company\storeapi\model\payload\response\user\JwtResponse.class
 com\company\storeapi\model\payload\response\ticket\ResponseTicketDTO.class
 com\company\storeapi\services\customer\CustomerService.class
 com\company\storeapi\web\api\ExpensesRestApi.class
@@ -94,7 +88,6 @@ com\company\storeapi\core\security\jwt\JwtUtils.class
 com\company\storeapi\core\security\service\UserDetailsServiceImpl.class
 com\company\storeapi\services\product\impl\FilesStorageServiceImpl.class
 com\company\storeapi\core\exceptions\persistence\DataNotFoundPersistenceException.class
-com\company\storeapi\model\payload\request\user\LoginRequest.class
 com\company\storeapi\core\exceptions\security\DataTokenInvalid.class
 com\company\storeapi\services\product\ProductService.class
 com\company\storeapi\core\exceptions\enums\LogRefServices.class
@@ -115,11 +108,9 @@ com\company\storeapi\core\mapper\TicketMapperImpl.class
 com\company\storeapi\model\payload\request\order\RequestUpdateOrderDTO.class
 com\company\storeapi\repositories\product\ProductRepository.class
 com\company\storeapi\web\api\OrderRestApi.class
-com\company\storeapi\repositories\user\facade\UserRepositoryFacade.class
 com\company\storeapi\services\ticket\TicketServices.class
 com\company\storeapi\core\exceptions\persistence\DataCorruptedPersistenceException.class
 com\company\storeapi\repositories\finances\cashRegisterDaily\facade\impl\CashRegisterDailyRepositoryFacadeImpl.class
-com\company\storeapi\model\payload\request\user\RequestAddUserDTO.class
 com\company\storeapi\model\entity\finance\Assets.class
 com\company\storeapi\model\payload\base\GenericResponseEntity.class
 com\company\storeapi\core\security\service\UserDetailsImpl.class
