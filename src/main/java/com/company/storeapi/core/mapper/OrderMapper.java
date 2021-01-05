@@ -71,7 +71,7 @@ public abstract class OrderMapper {
 
         List<CountingGeneral> counting = countingGeneralService.getAllCountingGeneral();
 
-        if((counting.size() ==0)){
+        if(counting.isEmpty()){
             CountingGeneral c = new CountingGeneral();
 
             c.setQuantity_of_orders_in_open_state(1);

@@ -1,6 +1,5 @@
 package com.company.storeapi.web.api;
 
-import com.company.storeapi.core.exceptions.base.ServiceException;
 import com.company.storeapi.model.payload.request.order.RequestAddOrderDTO;
 import com.company.storeapi.model.payload.request.order.RequestUpdateOrderDTO;
 import com.company.storeapi.model.payload.response.order.ResponseOrderDTO;
@@ -27,27 +26,25 @@ public class OrderRestApi {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ResponseOrderDTO> getAllOrders() throws ServiceException {
+    public List<ResponseOrderDTO> getAllOrders() {
         return orderService.getAllOrders();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ResponseOrderDTO> save(@RequestBody RequestAddOrderDTO order) throws ServiceException{
+    public ResponseEntity<ResponseOrderDTO> save(@RequestBody RequestAddOrderDTO order) {
         ResponseOrderDTO newOrder = orderService.saveOrder(order);
         return new ResponseEntity<>(newOrder, new HttpHeaders(), HttpStatus.OK);
     }
 
-   @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ResponseOrderDTO> readById(@PathVariable("id") String id)
-            throws ServiceException {
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ResponseOrderDTO> readById(@PathVariable("id") String id) {
         ResponseOrderDTO entity = orderService.validateAndGetOrderById(id);
         return new ResponseEntity<>(entity, new HttpHeaders(), HttpStatus.OK);
     }
 
-    @PatchMapping(value = "{id}", produces =  MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ResponseOrderDTO> update (@PathVariable String id, @Valid @RequestBody RequestUpdateOrderDTO requestUpdateOrderDTO)
-            throws ServiceException{
-        ResponseOrderDTO orderDTO = orderService.updateOrder(id,requestUpdateOrderDTO);
+    @PatchMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ResponseOrderDTO> update(@PathVariable String id, @Valid @RequestBody RequestUpdateOrderDTO requestUpdateOrderDTO) {
+        ResponseOrderDTO orderDTO = orderService.updateOrder(id, requestUpdateOrderDTO);
         return new ResponseEntity<>(orderDTO, new HttpHeaders(), HttpStatus.OK);
 
     }
