@@ -11,6 +11,7 @@ import com.company.storeapi.model.enums.OrderStatus;
 import com.company.storeapi.repositories.order.facade.OrderRepositoryFacade;
 import com.company.storeapi.services.countingGeneral.CountingGeneralService;
 import com.company.storeapi.services.order.OrderService;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderMapper orderMapper;
     private final CountingGeneralService countingGeneralService;
 
-    public OrderServiceImpl(OrderRepositoryFacade orderRepository, OrderMapper orderMapper, CountingGeneralService countingGeneralService) {
+    public OrderServiceImpl(@Lazy OrderRepositoryFacade orderRepository, OrderMapper orderMapper, CountingGeneralService countingGeneralService) {
         this.orderRepository = orderRepository;
         this.orderMapper = orderMapper;
         this.countingGeneralService = countingGeneralService;
