@@ -20,6 +20,7 @@ com\company\storeapi\services\finances\cashRegister\CashRegisterService.class
 com\company\storeapi\web\api\ProductRestApi.class
 com\company\storeapi\model\payload\response\customer\ResponseCustomerDTO.class
 com\company\storeapi\model\payload\response\finance\ResponseExpensesDTO.class
+com\company\storeapi\model\payload\response\finance\ResponseListCashRegisterDailyPaginationDto.class
 com\company\storeapi\repositories\tickey\facade\TicketRepositoryFacade.class
 com\company\storeapi\web\api\CustomerRestApi.class
 com\company\storeapi\core\exceptions\base\PortalException.class
@@ -65,6 +66,7 @@ com\company\storeapi\repositories\countingGeneral\facade\CountingGeneralReposito
 com\company\storeapi\core\security\jwt\AuthTokenFilter.class
 com\company\storeapi\core\mapper\CashRegisterMapperImpl.class
 com\company\storeapi\services\category\impl\CategoryServiceImpl.class
+com\company\storeapi\model\payload\response\finance\ResponseListExpensesPaginationDto.class
 com\company\storeapi\model\entity\finance\Expenses.class
 com\company\storeapi\core\security\jwt\AuthEntryPointJwt.class
 com\company\storeapi\repositories\finances\expenses\facade\ExpensesRepositoryFacade.class

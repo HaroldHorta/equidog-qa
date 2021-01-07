@@ -46,6 +46,7 @@ D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\model\payload\reques
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\services\customer\CustomerService.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\repositories\tickey\facade\TicketRepositoryFacade.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\web\api\CountingGeneralRestApi.java
+D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\model\payload\response\finance\ResponseListCashRegisterDailyPaginationDto.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\services\countingGeneral\CountingGeneralService.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\core\exceptions\enums\LogRefServices.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\model\enums\OrderStatus.java
@@ -107,6 +108,7 @@ D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\repositories\finance
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\core\aspect\base\BaseAspect.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\core\util\StandNameUtil.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\web\api\OrderRestApi.java
+D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\model\payload\response\finance\ResponseListExpensesPaginationDto.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\repositories\finances\cashRegisterDaily\facade\impl\CashRegisterDailyRepositoryFacadeImpl.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\services\order\impl\OrderServiceImpl.java
 D:\Despliegue\equidog-qa\src\main\java\com\company\storeapi\services\finances\expenses\impl\ExpensesServiceImpl.java

@@ -27,8 +27,6 @@ public class OrderServiceImpl implements OrderService {
     private final CountingGeneralService countingGeneralService;
 
 
-
-
     @Override
     public List<ResponseOrderDTO> getAllOrders() {
         return orderRepository.getAllOrders().stream().map(orderMapper::toOrderDto).collect(Collectors.toList());
