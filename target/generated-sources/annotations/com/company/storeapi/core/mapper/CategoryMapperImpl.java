@@ -3,16 +3,18 @@ package com.company.storeapi.core.mapper;
 import com.company.storeapi.model.entity.Category;
 import com.company.storeapi.model.payload.request.category.RequestUpdateCategoryDTO;
 import com.company.storeapi.model.payload.response.category.ResponseCategoryDTO;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.annotation.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-01-06T22:00:33-0500",
-    comments = "version: 1.3.1.Final, compiler: javac, environment: Java 11.0.7 (Oracle Corporation)"
+    date = "2021-02-07T22:49:44-0500",
+    comments = "version: 1.3.1.Final, compiler: javac, environment: Java 14.0.1 (Oracle Corporation)"
 )
 @Component
-public class CategoryMapperImpl extends CategoryMapper {
+public class CategoryMapperImpl implements CategoryMapper {
 
     @Override
     public Category toCategory(ResponseCategoryDTO responseCategoryDTO) {
@@ -24,6 +26,14 @@ public class CategoryMapperImpl extends CategoryMapper {
 
         category.setId( responseCategoryDTO.getId() );
         category.setDescription( responseCategoryDTO.getDescription() );
+        try {
+            if ( responseCategoryDTO.getCreateAt() != null ) {
+                category.setCreateAt( new SimpleDateFormat().parse( responseCategoryDTO.getCreateAt() ) );
+            }
+        }
+        catch ( ParseException e ) {
+            throw new RuntimeException( e );
+        }
 
         return category;
     }
@@ -38,6 +48,9 @@ public class CategoryMapperImpl extends CategoryMapper {
 
         responseCategoryDTO.setId( category.getId() );
         responseCategoryDTO.setDescription( category.getDescription() );
+        if ( category.getCreateAt() != null ) {
+            responseCategoryDTO.setCreateAt( new SimpleDateFormat().format( category.getCreateAt() ) );
+        }
 
         return responseCategoryDTO;
     }
