@@ -1,4 +1,4 @@
-package com.company.storeapi.repositories.finances.cashRegisterDaily.facade;
+package com.company.storeapi.repositories.finances.cashregisterdaily.facade;
 
 import com.company.storeapi.model.entity.finance.CashRegisterDaily;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +16,8 @@ public interface CashRegisterDailyRepositoryFacade {
     CashRegisterDaily save(CashRegisterDaily cashRegisterDaily);
 
     boolean existsCashRegisterDailiesByCashRegister(boolean cash);
+
+    int countByPageable (boolean pag);
 
 
 }

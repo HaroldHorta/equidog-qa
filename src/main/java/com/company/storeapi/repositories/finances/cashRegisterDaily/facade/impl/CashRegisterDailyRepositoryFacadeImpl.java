@@ -1,11 +1,11 @@
-package com.company.storeapi.repositories.finances.cashRegisterDaily.facade.impl;
+package com.company.storeapi.repositories.finances.cashregisterdaily.facade.impl;
 
 import com.company.storeapi.core.constants.MessageError;
 import com.company.storeapi.core.exceptions.enums.LogRefServices;
 import com.company.storeapi.core.exceptions.persistence.DataNotFoundPersistenceException;
 import com.company.storeapi.model.entity.finance.CashRegisterDaily;
-import com.company.storeapi.repositories.finances.cashRegisterDaily.CashRegisterDailyRepository;
-import com.company.storeapi.repositories.finances.cashRegisterDaily.facade.CashRegisterDailyRepositoryFacade;
+import com.company.storeapi.repositories.finances.cashregisterdaily.CashRegisterDailyRepository;
+import com.company.storeapi.repositories.finances.cashregisterdaily.facade.CashRegisterDailyRepositoryFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -46,7 +46,7 @@ public class CashRegisterDailyRepositoryFacadeImpl implements CashRegisterDailyR
 
     @Override
     public CashRegisterDaily findCashRegisterDailyByUltimate() {
-        return Optional.ofNullable(cashRegisterDailyRepository.findCashRegisterDailyByCashRegister(false))
+        return Optional.ofNullable(cashRegisterDailyRepository.findAllByCashRegister(false))
                 .orElseThrow(() -> new DataNotFoundPersistenceException(LogRefServices.ERROR_DATA_NOT_FOUND, "No se han registrado movimientos"));
 
     }
@@ -59,6 +59,17 @@ public class CashRegisterDailyRepositoryFacadeImpl implements CashRegisterDailyR
     @Override
     public boolean existsCashRegisterDailiesByCashRegister(boolean cash) {
         return cashRegisterDailyRepository.existsCashRegisterDailiesByCashRegister(cash);
+    }
+
+    @Override
+    public int countByPageable(boolean pag) {
+        try {
+            return cashRegisterDailyRepository.countByPageable(pag);
+        } catch (EmptyResultDataAccessException er) {
+            throw new DataNotFoundPersistenceException(LogRefServices.ERROR_DATA_NOT_FOUND, MessageError.NO_SE_HA_ENCONTRADO_LA_ENTIDAD);
+        } catch (DataAccessException er) {
+            throw new DataNotFoundPersistenceException(LogRefServices.LOG_REF_SERVICES, MessageError.ERROR_EN_EL_ACCESO_LA_ENTIDAD, er);
+        }
     }
 
 }

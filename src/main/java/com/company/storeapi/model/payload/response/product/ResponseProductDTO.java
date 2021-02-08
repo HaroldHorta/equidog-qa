@@ -1,5 +1,6 @@
 package com.company.storeapi.model.payload.response.product;
 
+import com.company.storeapi.model.payload.request.user.FileInfo;
 import com.company.storeapi.model.payload.response.category.ResponseCategoryDTO;
 import com.company.storeapi.model.enums.Status;
 import lombok.Data;

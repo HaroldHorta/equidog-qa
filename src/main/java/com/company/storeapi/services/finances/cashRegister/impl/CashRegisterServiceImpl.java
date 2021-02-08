@@ -1,14 +1,16 @@
-package com.company.storeapi.services.finances.cashRegister.impl;
+package com.company.storeapi.services.finances.cashregister.impl;
 
 import com.company.storeapi.core.mapper.CashRegisterMapper;
+import com.company.storeapi.core.util.StandNameUtil;
 import com.company.storeapi.model.entity.finance.CashBase;
 import com.company.storeapi.model.entity.finance.CashRegisterDaily;
 import com.company.storeapi.model.payload.response.finance.ResponseCashRegisterDTO;
 import com.company.storeapi.model.payload.response.finance.ResponseListCashRegisterDailyPaginationDto;
 import com.company.storeapi.repositories.finances.cashBase.facade.CashBaseRepositoryFacade;
-import com.company.storeapi.repositories.finances.cashRegisterDaily.facade.CashRegisterDailyRepositoryFacade;
-import com.company.storeapi.services.finances.cashRegister.CashRegisterService;
+import com.company.storeapi.repositories.finances.cashregisterdaily.facade.CashRegisterDailyRepositoryFacade;
+import com.company.storeapi.services.finances.cashregister.CashRegisterService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,9 @@ public class CashRegisterServiceImpl implements CashRegisterService {
     private final CashRegisterDailyRepositoryFacade cashRegisterDailyRepositoryFacade;
     private final CashBaseRepositoryFacade cashBaseRepositoryFacade;
 
+    @Value("${spring.size.pagination}")
+    private int size;
+
     @Override
     public ResponseCashRegisterDTO saveCashRegister() {
 
@@ -36,27 +41,41 @@ public class CashRegisterServiceImpl implements CashRegisterService {
         cashRegisterDaily.setCreateAt(new Date());
         cashRegisterDaily.setCashRegister(true);
 
-        return cashRegisterMapper.DtoChasRegisterDocument( cashRegisterDailyRepositoryFacade.save(cashRegisterDaily));
+        return cashRegisterMapper.dtoChasRegisterDocument( cashRegisterDailyRepositoryFacade.save(cashRegisterDaily));
     }
 
     @Override
     public ResponseListCashRegisterDailyPaginationDto getCashRegisterPageable() {
         List<CashRegisterDaily> cashRegisterDailies = cashRegisterDailyRepositoryFacade.findAllCashRegisterDaily();
-        return getResponseListCashRegisterDailyPaginationDto(cashRegisterDailies);
+        List<ResponseCashRegisterDTO> responseCashRegisters = cashRegisterDailies.stream().map(cashRegisterMapper::dtoChasRegisterDocument).collect(Collectors.toList());
+        ResponseListCashRegisterDailyPaginationDto responseListCashRegisterDailyPaginationDto = new ResponseListCashRegisterDailyPaginationDto();
+        responseListCashRegisterDailyPaginationDto.setLimitMax(cashRegisterDailies.size());
+        responseListCashRegisterDailyPaginationDto.setCashRegisters(responseCashRegisters);
+        return responseListCashRegisterDailyPaginationDto;
     }
 
     @Override
     public ResponseListCashRegisterDailyPaginationDto getCashRegisterPageable(Pageable pageable) {
         List<CashRegisterDaily> cashRegisterDailies = cashRegisterDailyRepositoryFacade.findAllByPageable(false, pageable);
-        return getResponseListCashRegisterDailyPaginationDto(cashRegisterDailies);
-    }
-
-    private ResponseListCashRegisterDailyPaginationDto getResponseListCashRegisterDailyPaginationDto(List<CashRegisterDaily> cashRegisterDailies) {
-        List<ResponseCashRegisterDTO> responseCashRegisters = cashRegisterDailies.stream().map(cashRegisterMapper::DtoChasRegisterDocument).collect(Collectors.toList());
+        List<ResponseCashRegisterDTO> responseCashRegisters = cashRegisterDailies.stream().map(cashRegisterMapper::dtoChasRegisterDocument).collect(Collectors.toList());
         ResponseListCashRegisterDailyPaginationDto responseListCashRegisterDailyPaginationDto = new ResponseListCashRegisterDailyPaginationDto();
-        responseListCashRegisterDailyPaginationDto.setCount(cashRegisterDailies.size());
+
+        int limitMin = getLimitCash(pageable, 1, (pageable.getPageNumber() * size) + 1);
+
+        int limitMax = getLimitCash(pageable, size, (pageable.getPageNumber() + 1) * size);
+
+        int totalData = cashRegisterDailyRepositoryFacade.countByPageable(false);
         responseListCashRegisterDailyPaginationDto.setCashRegisters(responseCashRegisters);
+        responseListCashRegisterDailyPaginationDto.setLimitMin(limitMin);
+        responseListCashRegisterDailyPaginationDto.setLimitMax(Math.min(totalData, limitMax));
+        responseListCashRegisterDailyPaginationDto.setTotalData(totalData);
+        responseListCashRegisterDailyPaginationDto.setSize(size);
         return responseListCashRegisterDailyPaginationDto;
     }
+
+    private int getLimitCash(Pageable pageable, int i, int i2) {
+        return StandNameUtil.getLimitPaginator(pageable, i, i2);
+    }
+
 
 }

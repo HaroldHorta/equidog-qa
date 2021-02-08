@@ -15,8 +15,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * The type Category repository.
@@ -44,7 +46,18 @@ public class CategoryRepositoryFacadeImpl implements CategoryRepositoryFacade {
     @Override
     public List<Category> findAllByStatus(Status status, Pageable pageable) {
         try {
-            return repository.findAllByStatus(status , pageable);
+            return repository.findAllByStatus(status , pageable).stream().sorted(Comparator.comparing(Category::getCreateAt).reversed()).collect(Collectors.toList());
+        }catch (EmptyResultDataAccessException er){
+            throw new DataNotFoundPersistenceException(LogRefServices.ERROR_DATA_NOT_FOUND, MessageError.NO_SE_HA_ENCONTRADO_LA_ENTIDAD);
+        }catch (DataAccessException er){
+            throw new DataNotFoundPersistenceException(LogRefServices.LOG_REF_SERVICES, MessageError.ERROR_EN_EL_ACCESO_LA_ENTIDAD,er);
+        }
+    }
+
+    @Override
+    public int countByStatus(Status status) {
+        try {
+            return repository.countByStatus(status);
         }catch (EmptyResultDataAccessException er){
             throw new DataNotFoundPersistenceException(LogRefServices.ERROR_DATA_NOT_FOUND, MessageError.NO_SE_HA_ENCONTRADO_LA_ENTIDAD);
         }catch (DataAccessException er){

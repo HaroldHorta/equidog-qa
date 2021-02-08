@@ -2,11 +2,11 @@ package com.company.storeapi.core.mapper;
 
 import com.company.storeapi.core.exceptions.enums.LogRefServices;
 import com.company.storeapi.core.exceptions.persistence.DataCorruptedPersistenceException;
-import com.company.storeapi.model.entity.Customer;
 import com.company.storeapi.model.enums.Status;
 import com.company.storeapi.model.payload.request.customer.RequestAddCustomerDTO;
 import com.company.storeapi.model.payload.request.customer.RequestUpdateCustomerDTO;
 import com.company.storeapi.model.payload.response.customer.ResponseCustomerDTO;
+import com.company.storeapi.model.entity.Customer;
 import com.company.storeapi.repositories.customer.facade.CustomerRepositoryFacade;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
@@ -20,55 +20,12 @@ import java.util.regex.Pattern;
         componentModel = "spring",
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE
 )
-public abstract class CustomerMapper {
+public interface CustomerMapper {
 
-    @Autowired
-    private CustomerRepositoryFacade customerRepositoryFacade;
+    Customer toCustomer(ResponseCustomerDTO requestAddCustomerDTO);
 
-    Pattern pattern = Pattern
-            .compile("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@"
-                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+    ResponseCustomerDTO toCustomerDto(Customer customer);
 
-    public Customer toCustomer(RequestAddCustomerDTO requestAddCustomerDTO){
-
-        boolean existDocument = customerRepositoryFacade.validateAndGetCustomerByNroDocument(requestAddCustomerDTO.getNroDocument().trim());
-        if(existDocument){
-            throw new DataCorruptedPersistenceException(LogRefServices.ERROR_DATA_CORRUPT,"El numero de cedula ya existe");
-        }
-
-        boolean existEmail = customerRepositoryFacade.validateAndGetCustomerByEmail(requestAddCustomerDTO.getEmail().trim());
-
-        if(existEmail){
-            throw new DataCorruptedPersistenceException(LogRefServices.ERROR_DATA_CORRUPT,"El correo ya existe");
-        }
-        Customer customer = new Customer();
-        if(!requestAddCustomerDTO.getName().isEmpty() && !requestAddCustomerDTO.getTypeDocument().toString().isEmpty() && !requestAddCustomerDTO.getNroDocument().isEmpty() ) {
-            customer.setName(requestAddCustomerDTO.getName());
-            customer.setTypeDocument(requestAddCustomerDTO.getTypeDocument());
-            customer.setNroDocument(requestAddCustomerDTO.getNroDocument().trim());
-            customer.setEmail("N/A");
-          if(!requestAddCustomerDTO.getEmail().isEmpty()){
-              Matcher mather = pattern.matcher(requestAddCustomerDTO.getEmail().trim());
-              if (mather.find()) {
-                  customer.setEmail(requestAddCustomerDTO.getEmail().trim());
-              } else {
-                  throw new DataCorruptedPersistenceException(LogRefServices.ERROR_DATA_CORRUPT,"Email no valido");
-              }
-          }
-            customer.setAddress(requestAddCustomerDTO.getAddress().isEmpty() ? "N/A" : requestAddCustomerDTO.getAddress().trim());
-            customer.setPhone(requestAddCustomerDTO.getPhone().isEmpty() ? "N/A" : requestAddCustomerDTO.getPhone().trim());
-            customer.setStatus(Status.ACTIVO);
-            return customer;
-        } else  {
-            throw new DataCorruptedPersistenceException(LogRefServices.ERROR_DATA_CORRUPT,"Los campos nombre, tipo de documento y numero de documento son obligatorios");
-        }
-
-    }
-
-    public abstract Customer toCustomer(ResponseCustomerDTO requestAddCustomerDTO);
-
-    public abstract ResponseCustomerDTO toCustomerDto(Customer customer);
-
-    public abstract void updateCustomerFromDto(RequestUpdateCustomerDTO updateCustomerDto, @MappingTarget Customer customer);
+    void updateCustomerFromDto(RequestUpdateCustomerDTO updateCustomerDto, @MappingTarget Customer customer);
 
 }
