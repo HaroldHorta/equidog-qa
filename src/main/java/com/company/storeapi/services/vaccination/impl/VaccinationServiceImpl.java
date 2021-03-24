@@ -3,7 +3,7 @@ package com.company.storeapi.services.vaccination.impl;
 import com.company.storeapi.core.exceptions.enums.LogRefServices;
 import com.company.storeapi.core.exceptions.persistence.DataNotFoundPersistenceException;
 import com.company.storeapi.core.mapper.VaccinationMapper;
-import com.company.storeapi.core.util.StandNameUtil;
+import com.company.storeapi.core.util.Util;
 import com.company.storeapi.model.entity.Vaccination;
 import com.company.storeapi.model.enums.Status;
 import com.company.storeapi.model.payload.request.vaccination.RequestAddVaccinationDTO;
@@ -40,7 +40,7 @@ public class VaccinationServiceImpl implements VaccinationService {
 
     @Override
     public ResponseVaccinationDTO save(RequestAddVaccinationDTO requestAddVaccinationDTO) {
-        String description = StandNameUtil.toCapitalLetters(requestAddVaccinationDTO.getDescription());
+        String description = Util.toCapitalLetters(requestAddVaccinationDTO.getDescription());
         boolean isDescription = vaccinationRepositoryFacade.existsVaccinationByDescription(description);
         if (isDescription) {
             throw new DataNotFoundPersistenceException(LogRefServices.ERROR_DATA_CORRUPT, "la vacuna con el nombre " + description + " ya existe");
@@ -51,8 +51,10 @@ public class VaccinationServiceImpl implements VaccinationService {
 
         Vaccination vaccination = new Vaccination();
         vaccination.setDescription(requestAddVaccinationDTO.getDescription());
+        vaccination.setLot(requestAddVaccinationDTO.getLot());
         vaccination.setCreateAt(new Date());
         vaccination.setStatus(Status.ACTIVO);
+        vaccination.setObservation(requestAddVaccinationDTO.getObservation());
         return vaccinationMapper.toVaccinationDto(vaccinationRepositoryFacade.save(vaccination));
     }
 
@@ -61,7 +63,8 @@ public class VaccinationServiceImpl implements VaccinationService {
 
         Vaccination vaccination = vaccinationRepositoryFacade.validateAndGetById(requestUpdateVaccinationDTO.getId());
         vaccination.setDescription(defaultIfNull(requestUpdateVaccinationDTO.getDescription(), vaccination.getDescription()));
-
+        vaccination.setLot(defaultIfNull(requestUpdateVaccinationDTO.getLot(), vaccination.getLot()));
+        vaccination.setObservation(defaultIfNull(requestUpdateVaccinationDTO.getObservation(), vaccination.getObservation()));
         return vaccinationMapper.toVaccinationDto(vaccinationRepositoryFacade.save(vaccination));
     }
 

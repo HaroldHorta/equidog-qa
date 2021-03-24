@@ -3,7 +3,7 @@ package com.company.storeapi.services.veterinary.impl;
 import com.company.storeapi.core.exceptions.enums.LogRefServices;
 import com.company.storeapi.core.exceptions.persistence.DataNotFoundPersistenceException;
 import com.company.storeapi.core.mapper.VeterinaryMapper;
-import com.company.storeapi.core.util.StandNameUtil;
+import com.company.storeapi.core.util.Util;
 import com.company.storeapi.model.entity.Veterinary;
 import com.company.storeapi.model.payload.request.veterinary.RequestAddVeterinaryDTO;
 import com.company.storeapi.model.payload.request.veterinary.RequestUpdateVeterinaryDTO;
@@ -38,8 +38,13 @@ public class VeterinaryServiceImpl implements VeterinaryService {
     }
 
     @Override
+    public ResponseVeterinaryDTO validateAndGetVeterinaryByProfessionalCard(String professionalCard) {
+        return veterinaryMapper.toVeterinaryDto(veterinaryRepositoryFacade.findVeterinaryByTAndProfessionalCard(professionalCard));
+    }
+
+    @Override
     public ResponseVeterinaryDTO saveVeterinary(RequestAddVeterinaryDTO requestAddVeterinaryDTO) {
-        String professionalCard = StandNameUtil.toCapitalLetters(requestAddVeterinaryDTO.getProfessionalCard().trim());
+        String professionalCard = Util.toCapitalLetters(requestAddVeterinaryDTO.getProfessionalCard().trim());
         boolean isProfessionalCard = veterinaryRepositoryFacade.existsVeterinaryByProfessionalCard(professionalCard);
 
         if (isProfessionalCard) {

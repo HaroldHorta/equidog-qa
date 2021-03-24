@@ -23,17 +23,16 @@ public class ClinicHistoryRestApi {
         this.service = service;
     }
 
-
-    @GetMapping(value = "customer/{nroDocument}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ResponseClinicHistoryDTO> getByCustomer(@PathVariable("nroDocument") String nroDocument)  {
-        return service.getClinicHistoryByCustomerNroDocument(nroDocument);
-    }
-
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ResponseClinicHistoryDTO> getById(@PathVariable("id") String id)
     {
         ResponseClinicHistoryDTO entity = service.validateAndGetClinicHistoryById(id);
         return new ResponseEntity<>(entity, new HttpHeaders(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "customer/{nroDocument}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ResponseClinicHistoryDTO> getByCustomer(@PathVariable("nroDocument") String nroDocument) {
+        return service.findClinicHistoryByCustomer(nroDocument);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

@@ -26,14 +26,12 @@ public class RequestAddPetDTO {
     private Sex sex;
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date dateBirth;
-    @Schema(example = "2")
-    private Integer age;
     @Schema(example = "Mancha cafe en el lomo")
     private String particularSigns;
     private Origin origin;
     @Schema(example = "601c835df4b9c71f38e3946e")
     private String customer;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date createAt;
+    @Schema(example = "img/java.jpg")
+    private String photo;
 
 }

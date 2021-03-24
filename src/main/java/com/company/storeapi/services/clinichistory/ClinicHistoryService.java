@@ -8,12 +8,12 @@ import java.util.List;
 
 public interface ClinicHistoryService {
 
-    List<ResponseClinicHistoryDTO> getClinicHistoryByCustomerNroDocument(String nroDocument);
-
     ResponseClinicHistoryDTO validateAndGetClinicHistoryById(String id);
 
     ResponseClinicHistoryDTO saveClinicHistory(RequestAddClinicHistoryDTO requestAddClinicHistoryDTO) ;
 
     ResponseClinicHistoryDTO updateClinicHistory(RequestUpdateClinicHistoryDTO requestUpdateClinicHistoryDTO) ;
+
+    List<ResponseClinicHistoryDTO> findClinicHistoryByCustomer(String nroDocument);
 
 }

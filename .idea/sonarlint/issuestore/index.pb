@@ -31,8 +31,6 @@ fsrc/main/java/com/company/storeapi/repositories/category/facade/impl/CategoryRe
 Psrc/main/java/com/company/storeapi/repositories/category/CategoryRepository.java,0\2\02351b01f3db6d89af951febcbde12f9f3ad6698
 r
 Bsrc/main/java/com/company/storeapi/core/mapper/CategoryMapper.java,5\5\55765ffaea4a61af02d719f2a012d15a8081ba80
-o
-?src/main/java/com/company/storeapi/core/util/StandNameUtil.java,3\1\311b706550ac23eae7330bce996f07cbce474838
 ™
 isrc/main/java/com/company/storeapi/model/payload/response/category/ResponseListCategoryPaginationDto.java,8\3\83ff68e73d8a3ec4802b9b301f3c0b12c49c272a
 v

@@ -4,7 +4,7 @@ package com.company.storeapi.services.breed.impl;
 import com.company.storeapi.core.exceptions.enums.LogRefServices;
 import com.company.storeapi.core.exceptions.persistence.DataNotFoundPersistenceException;
 import com.company.storeapi.core.mapper.BreedMapper;
-import com.company.storeapi.core.util.StandNameUtil;
+import com.company.storeapi.core.util.Util;
 import com.company.storeapi.model.entity.Breed;
 import com.company.storeapi.model.enums.Status;
 import com.company.storeapi.model.payload.request.breed.RequestAddBreedDTO;
@@ -12,7 +12,6 @@ import com.company.storeapi.model.payload.request.breed.RequestUpdateBreedDTO;
 import com.company.storeapi.model.payload.response.breed.ResponseBreedDTO;
 import com.company.storeapi.model.payload.response.breed.ResponseListBreedPaginationDto;
 import com.company.storeapi.repositories.breed.facade.BreedRepositoryFacade;
-import com.company.storeapi.repositories.clinichistory.facade.ClinicHistoryRepositoryFacade;
 import com.company.storeapi.services.breed.BreedService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,7 +27,6 @@ import java.util.stream.Collectors;
 public class BreedServiceImpl implements BreedService {
 
     private final BreedRepositoryFacade repositoryFacade;
-    private final ClinicHistoryRepositoryFacade clinicalHistoryRepositoryFacade;
     private final BreedMapper breedMapper;
 
     @Value("${spring.size.pagination}")
@@ -47,7 +45,7 @@ public class BreedServiceImpl implements BreedService {
 
     @Override
     public ResponseBreedDTO saveBreed(RequestAddBreedDTO requestAddBreedDTO) {
-        String description = StandNameUtil.toCapitalLetters(requestAddBreedDTO.getDescription().trim());
+        String description = Util.toCapitalLetters(requestAddBreedDTO.getDescription().trim());
         boolean isDescriptionBreed = repositoryFacade.existsBreedByDescription(description);
         if (isDescriptionBreed) {
             throw new DataNotFoundPersistenceException(LogRefServices.ERROR_DATA_CORRUPT, "La raza con el nombre " + description + " ya existe");
@@ -56,7 +54,7 @@ public class BreedServiceImpl implements BreedService {
             throw new DataNotFoundPersistenceException(LogRefServices.ERROR_DATA_CORRUPT, "La raza no puede estar vacia");
         }
         Breed breed = new Breed();
-        breed.setDescription(StandNameUtil.toCapitalLetters(requestAddBreedDTO.getDescription().trim()));
+        breed.setDescription(Util.toCapitalLetters(requestAddBreedDTO.getDescription().trim()));
         breed.setStatus(Status.ACTIVO);
         breed.setCreateAt(new Date());
 
@@ -81,7 +79,7 @@ public class BreedServiceImpl implements BreedService {
         List<ResponseBreedDTO> responseBreedDTOS = breeds.stream().map(breedMapper::toBreedDto).collect(Collectors.toList());
 
         ResponseListBreedPaginationDto responseListBreedPaginationDto = new ResponseListBreedPaginationDto();
-        responseListBreedPaginationDto.setBreedDTOS(responseBreedDTOS);
+        responseListBreedPaginationDto.setBreeds(responseBreedDTOS);
         responseListBreedPaginationDto.setLimitMax(breeds.size());
         return responseListBreedPaginationDto;
     }
@@ -92,7 +90,7 @@ public class BreedServiceImpl implements BreedService {
         List<ResponseBreedDTO> responseBreedDTOS = breeds.stream().map(breedMapper::toBreedDto).collect(Collectors.toList());
         int totalData = repositoryFacade.countByStatus(Status.ACTIVO);
         ResponseListBreedPaginationDto responseListBreedPaginationDto = new ResponseListBreedPaginationDto();
-        responseListBreedPaginationDto.setBreedDTOS(responseBreedDTOS);
+        responseListBreedPaginationDto.setBreeds(responseBreedDTOS);
 
         int limitMin = getLimit(pageable, 1, (pageable.getPageNumber() * size) + 1);
 
@@ -106,7 +104,7 @@ public class BreedServiceImpl implements BreedService {
     }
 
     private int getLimit(Pageable pageable, int i, int i2) {
-        return StandNameUtil.getLimitPaginator(pageable, i, i2);
+        return Util.getLimitPaginator(pageable, i, i2);
     }
 
 

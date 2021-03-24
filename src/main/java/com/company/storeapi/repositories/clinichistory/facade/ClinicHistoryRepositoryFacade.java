@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface ClinicHistoryRepositoryFacade {
 
-    List<ClinicHistory> getClinicHistoryByCustomerNroDocument(String nroDocument);
-
     ClinicHistory validateAndGetClinicHistoryById(String id);
 
     ClinicHistory saveClinicHistory(ClinicHistory clinicHistory) ;
+
+    List<ClinicHistory> findClinicHistoryByCustomer(String nroDocument);
 
 }
