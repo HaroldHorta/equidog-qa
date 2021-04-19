@@ -93,3 +93,7 @@ o
 ?src/main/java/com/company/storeapi/core/mapper/BreedMapper.java,e\0\e02968d3583f74cd70ecdc5c84d096a14265aaff
 |
 Lsrc/main/java/com/company/storeapi/services/breed/impl/BreedServiceImpl.java,5\6\56489d339cdd57f3c31aeccdd7c5a1d2d0626705
+w
+Gsrc/main/java/com/company/storeapi/core/mapper/ClinicHistoryMapper.java,e\8\e8ea457a1e395c8c0d3717fb4bfbb7615ef47a4a
+]
+-src/main/resources/application-dev.properties,c\3\c37467157e01027b51d4a92acec42e9af665ad9b
