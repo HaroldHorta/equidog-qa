@@ -5,6 +5,7 @@ import com.company.storeapi.model.payload.response.finance.ResponseCashRegisterD
 import com.company.storeapi.model.payload.response.finance.ResponseListCashRegisterDailyPaginationDto;
 import com.company.storeapi.services.finances.cashbase.CashBaseService;
 import com.company.storeapi.services.finances.cashregister.CashRegisterService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -32,7 +33,7 @@ public class CashBaseApi {
     }
 
     @GetMapping(value = "/cashRegisterDailyFilter", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseListCashRegisterDailyPaginationDto getAllCashRegisterDailyFilter() {
+    public ResponseListCashRegisterDailyPaginationDto getAllCashRegisterDailyFilter() throws JsonProcessingException {
         return cashRegisterService.getCashRegisterPageable();
     }
 

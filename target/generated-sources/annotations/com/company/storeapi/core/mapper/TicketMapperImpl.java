@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-04-18T23:22:59-0500",
-    comments = "version: 1.3.1.Final, compiler: javac, environment: Java 11.0.7 (Oracle Corporation)"
+    date = "2022-02-15T17:16:16-0500",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.1 (Oracle Corporation)"
 )
 @Component
 public class TicketMapperImpl implements TicketMapper {
@@ -25,12 +25,12 @@ public class TicketMapperImpl implements TicketMapper {
 
         ResponseTicketDTO responseTicketDTO = new ResponseTicketDTO();
 
+        responseTicketDTO.setCustomer( ticket.getCustomer() );
+        responseTicketDTO.setOrder( ticket.getOrder() );
         Set<CreditCapital> set = ticket.getCreditCapitals();
         if ( set != null ) {
             responseTicketDTO.setCreditCapitals( new HashSet<CreditCapital>( set ) );
         }
-        responseTicketDTO.setCustomer( ticket.getCustomer() );
-        responseTicketDTO.setOrder( ticket.getOrder() );
         responseTicketDTO.setId( ticket.getId() );
         if ( ticket.getCreateAt() != null ) {
             responseTicketDTO.setCreateAt( new SimpleDateFormat().format( ticket.getCreateAt() ) );

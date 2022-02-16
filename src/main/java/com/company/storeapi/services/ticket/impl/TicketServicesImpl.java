@@ -71,7 +71,7 @@ public class TicketServicesImpl implements TicketServices {
             throw new DataNotFoundPersistenceException(LogRefServices.ERROR_DATA_NOT_FOUND, "La orden ya esta pagada, no se puede generar ticket");
         }
 
-        double dailyCashSales;
+        double dailyCashSales = 0;
         double dailyTransactionsSales = 0;
         double dailyCreditSales = 0;
         double cashCreditCapital = 0;
@@ -99,7 +99,9 @@ public class TicketServicesImpl implements TicketServices {
         ticket.setTransactionPayment(0);
         ticket.setCreditPayment(0);
 
-        dailyCashSales = order.getTotalOrder();
+        if (ticket.getPaymentType() == PaymentType.EFECTIVO){
+            dailyCashSales = order.getTotalOrder();
+        }
 
         dailyTransactionsSales = validateDailyTransactionsSales(order, dailyTransactionsSales, ticket);
 

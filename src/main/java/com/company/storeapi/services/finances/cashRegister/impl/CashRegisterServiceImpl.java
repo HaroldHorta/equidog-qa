@@ -9,6 +9,8 @@ import com.company.storeapi.model.payload.response.finance.ResponseListCashRegis
 import com.company.storeapi.repositories.finances.cashBase.facade.CashBaseRepositoryFacade;
 import com.company.storeapi.repositories.finances.cashregisterdaily.facade.CashRegisterDailyRepositoryFacade;
 import com.company.storeapi.services.finances.cashregister.CashRegisterService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
@@ -41,12 +43,19 @@ public class CashRegisterServiceImpl implements CashRegisterService {
         cashRegisterDaily.setCreateAt(new Date());
         cashRegisterDaily.setCashRegister(true);
 
-        return cashRegisterMapper.dtoChasRegisterDocument( cashRegisterDailyRepositoryFacade.save(cashRegisterDaily));
+        return cashRegisterMapper.dtoChasRegisterDocument(cashRegisterDailyRepositoryFacade.save(cashRegisterDaily));
     }
 
     @Override
     public ResponseListCashRegisterDailyPaginationDto getCashRegisterPageable() {
         List<CashRegisterDaily> cashRegisterDailies = cashRegisterDailyRepositoryFacade.findAllCashRegisterDaily();
+
+        cashRegisterDailies.forEach(cashRegisterDaily ->
+                cashRegisterDaily.setTotalSales(
+                        cashRegisterDaily.getDailyCashSales()
+                                + cashRegisterDaily.getDailyCreditSales()
+                                + cashRegisterDaily.getDailyTransactionsSales()));
+
         List<ResponseCashRegisterDTO> responseCashRegisters = cashRegisterDailies.stream().map(cashRegisterMapper::dtoChasRegisterDocument).collect(Collectors.toList());
         ResponseListCashRegisterDailyPaginationDto responseListCashRegisterDailyPaginationDto = new ResponseListCashRegisterDailyPaginationDto();
         responseListCashRegisterDailyPaginationDto.setLimitMax(cashRegisterDailies.size());
