@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-02-15T17:16:15-0500",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.1 (Oracle Corporation)"
+    date = "2022-02-17T21:34:31-0500",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)"
 )
 @Component
 public class CashRegisterMapperImpl implements CashRegisterMapper {
@@ -35,6 +35,7 @@ public class CashRegisterMapperImpl implements CashRegisterMapper {
         if ( cashRegister.getCreateAt() != null ) {
             responseCashRegisterDTO.setCreateAt( new SimpleDateFormat().format( cashRegister.getCreateAt() ) );
         }
+        responseCashRegisterDTO.setTotalCashRegister( cashRegister.getTotalCashRegister() );
 
         return responseCashRegisterDTO;
     }

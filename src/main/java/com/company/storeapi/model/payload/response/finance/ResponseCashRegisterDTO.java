@@ -15,4 +15,5 @@ public class ResponseCashRegisterDTO {
     private double cashCreditCapital;
     private double transactionCreditCapital;
     private String createAt;
+    private double totalCashRegister;
 }

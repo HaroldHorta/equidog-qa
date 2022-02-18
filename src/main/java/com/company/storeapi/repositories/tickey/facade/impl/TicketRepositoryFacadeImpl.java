@@ -27,7 +27,7 @@ public class TicketRepositoryFacadeImpl implements TicketRepositoryFacade {
     @Override
     public List<Ticket> getAllTicket() {
         try {
-            return Optional.of(ticketRepository.findAll())
+            return Optional.of(ticketRepository.findAllByOrderByCreateAtDesc())
                     .orElseThrow(() -> new DataCorruptedPersistenceException(LogRefServices.ERROR_DATA_NOT_FOUND, "No se encontraron registros de ticket"));
         } catch (IllegalArgumentException ie) {
             throw new DataNotFoundPersistenceException(LogRefServices.ERROR_DATA_NOT_FOUND, MessageError.NO_SE_HA_ENCONTRADO_LA_ENTIDAD);
@@ -39,7 +39,7 @@ public class TicketRepositoryFacadeImpl implements TicketRepositoryFacade {
     @Override
     public List<Ticket> getAllTicketByCashRegister() {
         try {
-            return Optional.of(ticketRepository.findAll().stream().filter(ticket -> !ticket.isCashRegister()).collect(Collectors.toList()))
+            return Optional.of(ticketRepository.findAllByOrderByCreateAtDesc().stream().filter(ticket -> !ticket.isCashRegister()).collect(Collectors.toList()))
                     .orElseThrow(() -> new DataCorruptedPersistenceException(LogRefServices.ERROR_DATA_NOT_FOUND, "No se encontraron registros de ticket"));
         } catch (IllegalArgumentException ie) {
             throw new DataNotFoundPersistenceException(LogRefServices.ERROR_DATA_NOT_FOUND, MessageError.NO_SE_HA_ENCONTRADO_LA_ENTIDAD);

@@ -24,7 +24,7 @@ public class CashRegisterDailyRepositoryFacadeImpl implements CashRegisterDailyR
     @Override
     public List<CashRegisterDaily> findAllCashRegisterDaily() {
         try {
-            return Optional.of(cashRegisterDailyRepository.findAll())
+            return Optional.of(cashRegisterDailyRepository.findAllByOrderByCreateAtDesc())
                     .orElseThrow(() -> new DataNotFoundPersistenceException(LogRefServices.ERROR_DATA_NOT_FOUND, "No se registros"));
         } catch (EmptyResultDataAccessException er) {
             throw new DataNotFoundPersistenceException(LogRefServices.ERROR_DATA_NOT_FOUND, MessageError.NO_SE_HA_ENCONTRADO_LA_ENTIDAD);
@@ -36,7 +36,7 @@ public class CashRegisterDailyRepositoryFacadeImpl implements CashRegisterDailyR
     @Override
     public List<CashRegisterDaily> findAllByPageable(boolean pag, Pageable pageable) {
         try {
-            return cashRegisterDailyRepository.findAllByPageable(pag, pageable);
+            return cashRegisterDailyRepository.findAllByOrderByIdDescPageable(pag, pageable);
         } catch (EmptyResultDataAccessException er) {
             throw new DataNotFoundPersistenceException(LogRefServices.ERROR_DATA_NOT_FOUND, MessageError.NO_SE_HA_ENCONTRADO_LA_ENTIDAD);
         } catch (DataAccessException er) {

@@ -8,12 +8,14 @@ import java.util.List;
 
 public interface CashRegisterDailyRepository extends MongoRepository<CashRegisterDaily, String> {
 
+    List<CashRegisterDaily> findAllByOrderByCreateAtDesc();
+
     CashRegisterDaily findAllByCashRegister(boolean cashRegister);
 
     boolean existsCashRegisterDailiesByCashRegister(boolean cash);
 
-    List<CashRegisterDaily> findAllByPageable (boolean pag, Pageable pageable);
+    List<CashRegisterDaily> findAllByOrderByIdDescPageable(boolean pag, Pageable pageable);
 
-    int countByPageable (boolean pag);
+    int countByPageable(boolean pag);
 
 }

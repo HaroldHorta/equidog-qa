@@ -29,6 +29,8 @@ public class CashRegisterDaily {
     private Date createAt;
     private boolean cashRegister;
     private boolean pageable;
+    private double totalCashRegister;
+
 
 
 }
