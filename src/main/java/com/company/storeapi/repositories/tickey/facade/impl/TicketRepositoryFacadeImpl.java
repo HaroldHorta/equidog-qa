@@ -55,6 +55,7 @@ public class TicketRepositoryFacadeImpl implements TicketRepositoryFacade {
     }
 
     @Override
+    @Transactional
     public Ticket saveTicket(Ticket ticket) {
         try {
             return ticketRepository.save(ticket);

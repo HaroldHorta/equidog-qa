@@ -1,5 +1,6 @@
 package com.company.storeapi.services.ticket.impl;
 
+import com.company.storeapi.core.exceptions.base.ServiceException;
 import com.company.storeapi.core.exceptions.enums.LogRefServices;
 import com.company.storeapi.core.exceptions.persistence.DataCorruptedPersistenceException;
 import com.company.storeapi.core.exceptions.persistence.DataNotFoundPersistenceException;
@@ -25,6 +26,7 @@ import com.company.storeapi.services.customer.CustomerService;
 import com.company.storeapi.services.ticket.TicketServices;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.LinkedHashSet;
@@ -83,9 +85,6 @@ public class TicketServicesImpl implements TicketServices {
         ticket.setCustomer(customer);
         order.setOrderStatus(OrderStatus.PAGADA);
 
-        orderRepositoryFacade.saveOrder(order);
-
-        changeStatusProductByUnit(ticket, order);
         ticket.setCreateAt(new Date());
         ticket.setPaymentType(requestAddTicketDTO.getPaymentType());
         ticket.setTicketStatus(TicketStatus.PAGADA);
@@ -99,8 +98,20 @@ public class TicketServicesImpl implements TicketServices {
         ticket.setTransactionPayment(0);
         ticket.setCreditPayment(0);
 
-        if (ticket.getPaymentType() == PaymentType.EFECTIVO){
+        if (ticket.getPaymentType() == PaymentType.EFECTIVO) {
             dailyCashSales = order.getTotalOrder();
+        }
+
+        if (ticket.getPaymentType() == PaymentType.EFECTIVOANDTRANSACCION) {
+            dailyTransactionsSales = requestAddTicketDTO.getTransaction();
+            dailyCashSales = requestAddTicketDTO.getCash();
+
+            if(requestAddTicketDTO.getCash() + requestAddTicketDTO.getTransaction() == order.getTotalOrder()){
+                ticket.setCashPayment(requestAddTicketDTO.getCash());
+                ticket.setTransactionPayment(requestAddTicketDTO.getTransaction());
+            }else {
+                throw new ServiceException(LogRefServices.ERROR_DATA_CORRUPT, "El total de la compra no coincide con el pago");
+            }
         }
 
         dailyTransactionsSales = validateDailyTransactionsSales(order, dailyTransactionsSales, ticket);
@@ -144,6 +155,8 @@ public class TicketServicesImpl implements TicketServices {
 
         countingGeneralService.counting(requestAddTicketDTO.getOrder(), order.getOrderStatus());
 
+        changeStatusProductByUnit(ticket, order);
+        orderRepositoryFacade.saveOrder(order);
         return ticketMapper.toTicketDto(ticketRepositoryFacade.saveTicket(ticket));
     }
 

@@ -49,8 +49,6 @@ l
 <src/main/java/com/company/storeapi/model/entity/Product.java,7\a\7aa53f9f6d319f6795ca4c6b5266566f1b5186f2
 m
 =src/main/java/com/company/storeapi/model/entity/Customer.java,1\e\1e4507d59938a0f5a17779d37c9b015a25cb17b1
-k
-;src/main/java/com/company/storeapi/model/entity/Ticket.java,2\0\20fc47b8460450f4afc022a22998995021fe8c4e
 o
 ?src/main/java/com/company/storeapi/core/mapper/OrderMapper.java,5\b\5b19118018de465b8c79565ec49b04d5a8861b6a
 o
@@ -79,8 +77,6 @@ Psrc/main/java/com/company/storeapi/services/product/impl/ProductServiceImpl.jav
 qsrc/main/java/com/company/storeapi/model/payload/response/finance/ResponseListCashRegisterDailyPaginationDto.java,6\b\6b7b91f070c7570bcdffa78019024d49c6f91f9b
 r
 Bsrc/main/java/com/company/storeapi/core/mapper/ExpensesMapper.java,6\b\6b8fe713b7287fea9afdc590831a9c0a32693e6c
-p
-@src/main/java/com/company/storeapi/core/mapper/TicketMapper.java,b\a\bab77e337b8e78a9b9087724de4ea9d52fa0bf74
 o
 ?src/main/java/com/company/storeapi/core/mapper/BreedMapper.java,e\0\e02968d3583f74cd70ecdc5c84d096a14265aaff
 |
