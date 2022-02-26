@@ -71,14 +71,14 @@ public class OrderServiceImpl implements OrderService {
         if ((counting.isEmpty())) {
             CountingGeneral c = new CountingGeneral();
 
-            c.setQuantity_of_orders_in_open_state(1);
+            c.setQuantityOfOrdersInOpenState(1);
             countingGeneralService.saveCountingGeneral(c);
 
         } else {
             counting.forEach(p -> {
                 CountingGeneral countingGeneral = countingGeneralService.validateCountingGeneral(p.getId());
 
-                countingGeneral.setQuantity_of_orders_in_open_state(p.getQuantity_of_orders_in_open_state() + 1);
+                countingGeneral.setQuantityOfOrdersInOpenState(p.getQuantityOfOrdersInOpenState() + 1);
 
                 countingGeneralService.saveCountingGeneral(countingGeneral);
             });

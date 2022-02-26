@@ -27,7 +27,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
         PetRestApi.class,
         ClinicHistoryRestApi.class,
         ClinicExamApiRest.class,
-        DiagnosticPlanRestApi.class
+        DiagnosticPlanRestApi.class,
+        CompanyRestApi.class
 
 
 })

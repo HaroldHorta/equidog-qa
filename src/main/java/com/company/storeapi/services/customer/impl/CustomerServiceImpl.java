@@ -12,7 +12,7 @@ import com.company.storeapi.model.payload.request.customer.RequestAddCustomerDTO
 import com.company.storeapi.model.payload.request.customer.RequestUpdateCustomerDTO;
 import com.company.storeapi.model.payload.response.customer.ResponseCustomerDTO;
 import com.company.storeapi.model.payload.response.customer.ResponseListCustomerPaginationDto;
-import com.company.storeapi.repositories.countingGeneral.facade.CountingGeneralRepositoryFacade;
+import com.company.storeapi.repositories.countinggeneral.facade.CountingGeneralRepositoryFacade;
 import com.company.storeapi.repositories.customer.facade.CustomerRepositoryFacade;
 import com.company.storeapi.services.customer.CustomerService;
 import lombok.RequiredArgsConstructor;
@@ -165,14 +165,14 @@ public class CustomerServiceImpl implements CustomerService {
         if ((counting.isEmpty())) {
             CountingGeneral c = new CountingGeneral();
 
-            c.setQuantity_of_customer(1);
+            c.setQuantityOfCustomer(1);
             countingGeneralRepositoryFacade.saveCountingGeneral(c);
 
         } else {
             counting.forEach(p -> {
                 CountingGeneral countingGeneral = countingGeneralRepositoryFacade.validateCountingGeneral(p.getId());
 
-                countingGeneral.setQuantity_of_customer(p.getQuantity_of_customer() + 1);
+                countingGeneral.setQuantityOfCustomer(p.getQuantityOfCustomer() + 1);
 
                 countingGeneralRepositoryFacade.saveCountingGeneral(countingGeneral);
             });

@@ -13,10 +13,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class CountingGeneral {
     @Id
     private String id;
-    private int quantity_of_orders_in_cancelled_state;
-    private int quantity_of_orders_in_open_state;
-    private int quantity_of_orders_in_pending_state;
-    private int quantity_of_orders_in_payed_state;
-    private int quantity_of_customer;
-    private int quantity_of_product;
+    private int quantityOfOrdersInCancelledState;
+    private int quantityOfOrdersInOpenState;
+    private int quantityOfOrdersInPendingState;
+    private int quantityOfOrdersInPayedState;
+    private int quantityOfCustomer;
+    private int quantityOfProduct;
 }

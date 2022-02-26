@@ -94,14 +94,14 @@ public class ProductServiceImpl implements ProductService {
         if ((counting.isEmpty())) {
             CountingGeneral c = new CountingGeneral();
 
-            c.setQuantity_of_product(1);
+            c.setQuantityOfProduct(1);
             countingGeneralService.saveCountingGeneral(c);
 
         } else {
             counting.forEach(p -> {
                 CountingGeneral countingGeneral = countingGeneralService.validateCountingGeneral(p.getId());
 
-                countingGeneral.setQuantity_of_product(p.getQuantity_of_product() + 1);
+                countingGeneral.setQuantityOfProduct(p.getQuantityOfProduct() + 1);
 
                 countingGeneralService.saveCountingGeneral(countingGeneral);
             });

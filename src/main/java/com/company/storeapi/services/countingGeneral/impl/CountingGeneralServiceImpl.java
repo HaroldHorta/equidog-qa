@@ -3,7 +3,7 @@ package com.company.storeapi.services.countingGeneral.impl;
 import com.company.storeapi.model.entity.CountingGeneral;
 import com.company.storeapi.model.entity.Order;
 import com.company.storeapi.model.enums.OrderStatus;
-import com.company.storeapi.repositories.countingGeneral.facade.CountingGeneralRepositoryFacade;
+import com.company.storeapi.repositories.countinggeneral.facade.CountingGeneralRepositoryFacade;
 import com.company.storeapi.repositories.order.facade.OrderRepositoryFacade;
 import com.company.storeapi.services.countingGeneral.CountingGeneralService;
 import org.springframework.stereotype.Service;
@@ -41,18 +41,18 @@ public class CountingGeneralServiceImpl implements CountingGeneralService {
             CountingGeneral countingGeneral = countingGeneralRepositoryFacade.validateCountingGeneral(p.getId());
 
             if(order.getOrderStatus()== OrderStatus.ABIERTA){
-                countingGeneral.setQuantity_of_orders_in_open_state(countingGeneral.getQuantity_of_orders_in_open_state()-1);
+                countingGeneral.setQuantityOfOrdersInOpenState(countingGeneral.getQuantityOfOrdersInOpenState()-1);
                 if(orderStatus == OrderStatus.PAGADA){
-                    countingGeneral.setQuantity_of_orders_in_payed_state(countingGeneral.getQuantity_of_orders_in_payed_state()+1);
+                    countingGeneral.setQuantityOfOrdersInPayedState(countingGeneral.getQuantityOfOrdersInPayedState()+1);
                 }if(orderStatus == OrderStatus.CANCELADA){
-                    countingGeneral.setQuantity_of_orders_in_cancelled_state(countingGeneral.getQuantity_of_orders_in_cancelled_state()+1);
+                    countingGeneral.setQuantityOfOrdersInCancelledState(countingGeneral.getQuantityOfOrdersInCancelledState()+1);
                 }
             }
 
             if(order.getOrderStatus()== OrderStatus.CANCELADA){
-                countingGeneral.setQuantity_of_orders_in_cancelled_state(countingGeneral.getQuantity_of_orders_in_cancelled_state()-1);
+                countingGeneral.setQuantityOfOrdersInCancelledState(countingGeneral.getQuantityOfOrdersInCancelledState()-1);
                 if(orderStatus == OrderStatus.ABIERTA){
-                    countingGeneral.setQuantity_of_orders_in_open_state(countingGeneral.getQuantity_of_orders_in_open_state()+1);
+                    countingGeneral.setQuantityOfOrdersInOpenState(countingGeneral.getQuantityOfOrdersInOpenState()+1);
                 }
             }
 
